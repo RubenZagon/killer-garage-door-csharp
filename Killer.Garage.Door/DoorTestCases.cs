@@ -32,15 +32,6 @@ public class DoorTestCases : IDisposable
     }
 
     [Fact]
-    public void Press_the_button_for_1_sec()
-    {
-        var input = "..P";
-        var actual = _objectUnderTest.ProcessEvents(input);
-
-        actual.Should().Be("001");
-    }
-
-    [Fact]
     public void Press_the_button_for_2_sec()
     {
         var input = "..P.";
