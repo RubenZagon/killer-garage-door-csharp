@@ -1,11 +1,27 @@
 ﻿<wpf:ResourceDictionary xml:space="preserve" xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml" xmlns:s="clr-namespace:System;assembly=mscorlib" xmlns:ss="urn:shemas-jetbrains-com:settings-storage-xaml" xmlns:wpf="http://schemas.microsoft.com/winfx/2006/xaml/presentation">
-	<s:String x:Key="/Default/Environment/UnitTesting/UnitTestSessionStore/Sessions/=07d2a5dc_002D1f23_002D4515_002D9ef8_002De952734ba3dc/@EntryIndexedValue">&lt;SessionState ContinuousTestingIsOn="True" ContinuousTestingMode="1" IsActive="True" Name="No_press_the_button #2" xmlns="urn:schemas-jetbrains-com:jetbrains-ut-session"&gt;
+	<s:String x:Key="/Default/Environment/UnitTesting/UnitTestSessionStore/Sessions/=07d2a5dc_002D1f23_002D4515_002D9ef8_002De952734ba3dc/@EntryIndexedValue">&lt;SessionState ContinuousTestingIsOn="True" ContinuousTestingMode="1" Name="No_press_the_button #2" xmlns="urn:schemas-jetbrains-com:jetbrains-ut-session"&gt;
   &lt;TestAncestor&gt;
     &lt;TestId&gt;xUnit::F692E0CD-C874-4130-99D1-19F87ED33107::net7.0::TestProject1.DoorTestCases.No_press_the_button&lt;/TestId&gt;
     &lt;TestId&gt;xUnit::F692E0CD-C874-4130-99D1-19F87ED33107::net7.0::TestProject1.DoorTestCases.Press_the_button_for_1_sec&lt;/TestId&gt;
     &lt;TestId&gt;xUnit::F692E0CD-C874-4130-99D1-19F87ED33107::net7.0::TestProject1.DoorTestCases.Press_the_button_for_2_sec&lt;/TestId&gt;
     &lt;TestId&gt;xUnit::F692E0CD-C874-4130-99D1-19F87ED33107::net7.0::TestProject1.DoorTestCases.NormalOperation_ShouldOpenCompletelyAndStayOpen_Random&lt;/TestId&gt;
     &lt;TestId&gt;xUnit::F692E0CD-C874-4130-99D1-19F87ED33107::net7.0::TestProject1.DoorTestCases.Should_Open_Completely_And_Stay_Open_Then_Close&lt;/TestId&gt;
+    &lt;TestId&gt;xUnit::F692E0CD-C874-4130-99D1-19F87ED33107::net7.0::TestProject1.DoorTestCases.Pause_ShouldStartOpeningAndPauseOnSecondPress&lt;/TestId&gt;
+  &lt;/TestAncestor&gt;
+&lt;/SessionState&gt;</s:String>
+	<s:String x:Key="/Default/Environment/UnitTesting/UnitTestSessionStore/Sessions/=0a385cec_002D798c_002D4a09_002D9cc8_002D45499b96f638/@EntryIndexedValue">&lt;SessionState ContinuousTestingMode="0" Name="No_press_the_button" xmlns="urn:schemas-jetbrains-com:jetbrains-ut-session"&gt;
+  &lt;TestAncestor&gt;
+    &lt;TestId&gt;xUnit::F692E0CD-C874-4130-99D1-19F87ED33107::net7.0::TestProject1.DoorTestCases.No_press_the_button&lt;/TestId&gt;
+    &lt;TestId&gt;xUnit::F692E0CD-C874-4130-99D1-19F87ED33107::net7.0::TestProject1.DoorTestCases.Press_the_button_for_1_sec&lt;/TestId&gt;
+    &lt;TestId&gt;xUnit::F692E0CD-C874-4130-99D1-19F87ED33107::net7.0::TestProject1.DoorTestCases.Press_the_button_for_2_sec&lt;/TestId&gt;
+    &lt;TestId&gt;xUnit::F692E0CD-C874-4130-99D1-19F87ED33107::net7.0::TestProject1.DoorTestCases.NormalOperation_ShouldOpenCompletelyAndStayOpen_Random&lt;/TestId&gt;
+    &lt;TestId&gt;xUnit::F692E0CD-C874-4130-99D1-19F87ED33107::net7.0::TestProject1.DoorTestCases.Should_Open_Completely_And_Stay_Open_Then_Close&lt;/TestId&gt;
+    &lt;TestId&gt;xUnit::F692E0CD-C874-4130-99D1-19F87ED33107::net7.0::TestProject1.DoorTestCases.Pause_ShouldStartOpeningAndPauseOnSecondPress&lt;/TestId&gt;
+  &lt;/TestAncestor&gt;
+&lt;/SessionState&gt;</s:String>
+	<s:String x:Key="/Default/Environment/UnitTesting/UnitTestSessionStore/Sessions/=9115e065_002Df32d_002D4138_002Dac63_002D8f4628162523/@EntryIndexedValue">&lt;SessionState ContinuousTestingMode="0" IsActive="True" Name="DoorTestCases" xmlns="urn:schemas-jetbrains-com:jetbrains-ut-session"&gt;
+  &lt;TestAncestor&gt;
+    &lt;TestId&gt;xUnit::F692E0CD-C874-4130-99D1-19F87ED33107::net7.0::TestProject1.DoorTestCases&lt;/TestId&gt;
   &lt;/TestAncestor&gt;
 &lt;/SessionState&gt;</s:String>
 	
