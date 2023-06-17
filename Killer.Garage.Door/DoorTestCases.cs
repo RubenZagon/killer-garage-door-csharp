@@ -70,27 +70,27 @@ public class DoorTestCases : IDisposable
     public void Pause_ShouldResumeOpeningOnThirdPress()
     {
         var actual = _objectUnderTest.ProcessEvents("P.P.P....");
-        //Assert.AreEqual("122234555", actual);
+        actual.Should().Be("122234555");
     }
 
     [Fact]
     public void Obstacle_ShouldReverseWhileOpening()
     {
         var actual = _objectUnderTest.ProcessEvents("P.O....");
-        //Assert.AreEqual("1210000", actual);
+        actual.Should().Be("1210000");
     }
 
     [Fact]
     public void ObstacleAndPause_ShouldReverseWhileOpeningAndAllowPause()
     {
         var actual = _objectUnderTest.ProcessEvents("P..OP..P..");
-        //Assert.AreEqual("1232222100", actual);
+        actual.Should().Be("1232222100");
     }
 
     [Fact]
     public void Example_ShouldStartOpeningAndReverseWhenObstacle()
     {
         var actual = _objectUnderTest.ProcessEvents("..P...O.....");
-        //Assert.AreEqual("001234321000", actual);
+        actual.Should().Be("001234321000");
     }
 }
