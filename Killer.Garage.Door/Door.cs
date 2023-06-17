@@ -6,7 +6,7 @@ public interface State
     void Handle(Door door, char @event);
 }
 
-public class Static : State
+public class Pause : State
 {
     private bool _buttonPressed = false;
 
@@ -26,10 +26,17 @@ public class Static : State
                 door.ChangeState(new Closing());
                 break;
             case true when door._position is > 0 and < 5:
-                door.ChangeState(new Opening());
+                if (door._lastState is Opening)
+                {
+                    door.ChangeState(new Opening());
+                }
+                else
+                {
+                    door.ChangeState(new Closing());
+                }
                 break;
             default:
-                door.ChangeState(new Static());
+                door.ChangeState(new Pause());
                 break;
         }
     }
@@ -46,13 +53,19 @@ public class Opening : State
 
     public void Handle(Door door, char @event)
     {
-        if (@event == 'P' || door._position == 5)
+        if (@event == 'P' || door._position == FullyOpened)
         {
-            door.ChangeState(new Static());
+            door.ChangeState(new Pause());
+        }
+        else if (@event == 'O')
+        {
+            door.ChangeState(new Closing());
+            door._lastState = new Closing();
         }
         else
         {
             door.ChangeState(new Opening());
+            door._lastState = new Opening();
         }
     }
 
@@ -69,13 +82,14 @@ public class Closing : State
 
     public void Handle(Door door, char @event)
     {
-        if (@event == 'P' || door._position == 0)
+        if (@event == 'P' || door._position == FullyClosed)
         {
-            door.ChangeState(new Static());
+            door.ChangeState(new Pause());
         }
         else
         {
             door.ChangeState(new Closing());
+            door._lastState = new Closing();
         }
     }
 
@@ -92,10 +106,12 @@ public class Door
 
     internal int _position = 0;
 
+    internal State _lastState;
+
 
     public Door()
     {
-        _state = new Static();
+        _state = new Pause();
     }
 
     public void ChangeState(State state)
@@ -103,7 +119,7 @@ public class Door
         _state = state;
     }
 
-    public string ProcessEvents(string events) //  "...P....P" -> "[.][.][.][P][.][.][.][.][P]"
+    public string ProcessEvents(string events)
     {
         // Patrón Estado
         return new string(
