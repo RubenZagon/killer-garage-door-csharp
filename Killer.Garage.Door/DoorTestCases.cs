@@ -93,4 +93,11 @@ public class DoorTestCases : IDisposable
         var actual = _objectUnderTest.ProcessEvents("..P...O.....");
         actual.Should().Be("001234321000");
     }
+    
+    [Fact]
+    public void Obstacle_ShouldReverseWhileClosing()
+    {
+        var actual = _objectUnderTest.ProcessEvents("P......P.O....");
+        actual.Should().Be("12345554345555");
+    }
 }

@@ -86,6 +86,11 @@ public class Closing : State
         {
             door.ChangeState(new Pause());
         }
+        else if (@event == 'O')
+        {
+            door.ChangeState(new Opening());
+            door._lastState = new Opening();
+        }
         else
         {
             door.ChangeState(new Closing());
