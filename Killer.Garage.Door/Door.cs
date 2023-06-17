@@ -1,122 +1,112 @@
 namespace TestProject1;
 
 
-public interface DoorState
+public interface State
 {
-    public string ProcessEvents(string events, int position);
+    char ProcessEvents(int position);
+    void Handle(Door door, char @event);
 }
 
-public class Opening : DoorState
+public class Static : State
 {
-    public string ProcessEvents(string events, int position)
+    private bool _buttonPressed = false;
+    
+    public void Handle(Door door, char @event)
     {
-        if (position == 5)
+        if (@event == 'P')
         {
-            return position.ToString()[0].ToString();
+            _buttonPressed = true;
         }
-
-        return (position + 1).ToString()[0].ToString();
+        switch (_buttonPressed)
+        {
+            case true when door._position == 0:
+                door.ChangeState(new Opening());
+                break;
+            case true when door._position == 5:
+                door.ChangeState(new Closing());
+                break;
+            case true when door._position is > 0 and < 5:
+                door.ChangeState(new Static());
+                break;
+            default:
+                door.ChangeState(new Static());
+                break;
+        }
     }
+
+    public char ProcessEvents(int position)
+    {
+        return position.ToString()[0];
+    }
+
 }
 
-public class Closing : DoorState
+public class Opening : State
 {
-    public string ProcessEvents(string events, int position)
-    {
-        if (position == 0)
-        {
-            return position.ToString()[0].ToString();
-        }
+    private const int FullyOpened = 5;
 
-        return (position - 1).ToString()[0].ToString();
+    public void Handle(Door door, char @event)
+    {
+        door.ChangeState(new Static());
     }
+
+    
+    public char ProcessEvents(int position)
+    {
+        return position == FullyOpened 
+            ? position.ToString()[0] 
+            : (position + 1).ToString()[0];
+    }
+
+}
+
+public class Closing : State
+{ 
+    private const int FullyClosed = 0;
+
+    public void Handle(Door door, char @event)
+    {
+        door.ChangeState(new Static());
+    }
+
+    public char ProcessEvents(int position)
+    {
+        return position == FullyClosed 
+            ? position.ToString()[0] 
+            : (position - 1).ToString()[0];
+    }
+
 }
 
 
 public class Door
 {
-    private DoorState _state = new Closing();
-    private const int FullyOpened = 5;
-    private const int FullyClosed = 0;
-    private int _position = 0;
-    private bool _isOpening = false;
-    
-    private void changeState(DoorState state)
+    private State _state;
+
+
+    internal int _position = 0;
+
+    public Door()
+    {
+        _state = new Static();
+    }
+
+    public void ChangeState(State state)
     {
         _state = state;
     }
 
     public string ProcessEvents(string events)//  "...P....P" -> "[.][.][.][P][.][.][.][.][P]"
     {
-        
         // Patrón Estado
-        
         return new string(
             events.ToCharArray()
             .Select(@event =>
             {
-                if (@event == 'P' &&  _state is Opening)
-                {
-                    changeState(new Closing());
-                }
-                else if (@event == 'P' &&  _state is Closing)
-                {
-                    changeState(new Opening());
-                }
-                // {
-                //     _isOpening = !_isOpening;
-                // }
-                
-                
-                
-                return _state.ProcessEvents(events, _position);
-                
+                _state.Handle(this, @event);
+                return _state.ProcessEvents(_position);
             })
             .ToArray()
         );
-    }
-    
-    public string ProcessEvents(string events, bool new_way)
-    {
-        return new string(
-            events.ToCharArray()
-                .Select(@event =>
-                {
-
-                    SwitchBehaviourByBottomPressed(@event);
-                    
-                    if (_isOpening)
-                    {
-                        if (_position == FullyOpened)
-                        {
-                            return _position.ToString()[0];
-                        }
-
-                        _position++;
-                    }
-                    else
-                    {
-                        if (_position == FullyClosed)
-                        {
-                            return _position.ToString()[0];
-                        }
-
-                        _position--;
-                    }
-                    
-                    return _position.ToString()[0];
-                })
-                .ToArray()
-        );
-    }
-
-    
-
-    private void SwitchBehaviourByBottomPressed(char @event)
-    {
-        if (@event == 'P')
-        {
-            _isOpening = !_isOpening;
-        }
     }
 }
