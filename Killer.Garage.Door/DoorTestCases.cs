@@ -60,7 +60,7 @@ public class DoorTestCases : IDisposable
 
 
     [Fact]
-    public void Pause_ShouldStartOpeningAndPauseOnSecondPress()
+    public void Pause_Should_Start_Opening_And_Pause_On_Second_Press()
     {
         var actual = _objectUnderTest.ProcessEvents("P.P..");
         actual.Should().Be("12222");
