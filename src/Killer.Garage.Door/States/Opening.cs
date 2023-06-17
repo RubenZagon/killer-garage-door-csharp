@@ -27,7 +27,7 @@ public class Opening : State
         }
     }
     
-    public int ProcessEvents(int position)
+    public int ProcessEvent(int position)
     {
         return position + 1;
     }

@@ -28,7 +28,7 @@ public class GarageDoor
                 .Select(@event =>
                 {
                     state.Handle(this, @event);
-                    position = state.ProcessEvents(position);
+                    position = state.ProcessEvent(position);
                     return position.ToString()[0];
                 })
                 .ToArray()

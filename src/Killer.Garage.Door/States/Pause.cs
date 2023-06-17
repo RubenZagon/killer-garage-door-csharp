@@ -31,7 +31,7 @@ public class Pause : State
         }
     }
 
-    public int ProcessEvents(int position)
+    public int ProcessEvent(int position)
     {
         return position;
     }
