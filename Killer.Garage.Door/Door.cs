@@ -26,7 +26,7 @@ public class Static : State
                 door.ChangeState(new Closing());
                 break;
             case true when door._position is > 0 and < 5:
-                door.ChangeState(new Static());
+                door.ChangeState(new Opening());
                 break;
             default:
                 door.ChangeState(new Static());

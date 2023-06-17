@@ -67,7 +67,7 @@ public class DoorTestCases : IDisposable
     }
 
     [Fact]
-    public void Pause_ShouldResumeOpeningOnThirdPress()
+    public void Pause_Should_Resume_Opening_On_Third_Press()
     {
         var actual = _objectUnderTest.ProcessEvents("P.P.P....");
         actual.Should().Be("122234555");
