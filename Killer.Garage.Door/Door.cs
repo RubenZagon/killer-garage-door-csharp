@@ -69,7 +69,14 @@ public class Closing : State
 
     public void Handle(Door door, char @event)
     {
-        door.ChangeState(new Static());
+        if (@event == 'P' || door._position == 0)
+        {
+            door.ChangeState(new Static());
+        }
+        else
+        {
+            door.ChangeState(new Closing());
+        }
     }
 
     public int ProcessEvents(int position)
