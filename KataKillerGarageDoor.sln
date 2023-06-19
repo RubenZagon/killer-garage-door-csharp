@@ -8,6 +8,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Killer.Garage.Door", "src\K
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Killer.Garage.Door.Unit.Tests", "tests\Killer.Garage.Door.Unit.Tests\Killer.Garage.Door.Unit.Tests.csproj", "{7D7D0571-36E8-4484-8A2E-9A4E6C1CECFE}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "EasyExample", "src\LightSwitch\EasyExample\EasyExample.csproj", "{A28F44EA-1BB4-43EE-9F16-4826539F372B}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -22,9 +24,14 @@ Global
 		{7D7D0571-36E8-4484-8A2E-9A4E6C1CECFE}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{7D7D0571-36E8-4484-8A2E-9A4E6C1CECFE}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{7D7D0571-36E8-4484-8A2E-9A4E6C1CECFE}.Release|Any CPU.Build.0 = Release|Any CPU
+		{A28F44EA-1BB4-43EE-9F16-4826539F372B}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{A28F44EA-1BB4-43EE-9F16-4826539F372B}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{A28F44EA-1BB4-43EE-9F16-4826539F372B}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{A28F44EA-1BB4-43EE-9F16-4826539F372B}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(NestedProjects) = preSolution
 		{77B4CF32-F046-493C-812A-9F9C61693274} = {2B21A56E-5F5C-49CB-9956-E0F47B57A76B}
 		{7D7D0571-36E8-4484-8A2E-9A4E6C1CECFE} = {BA527B12-1A84-4F66-8E5F-986190F50D0D}
+		{A28F44EA-1BB4-43EE-9F16-4826539F372B} = {2B21A56E-5F5C-49CB-9956-E0F47B57A76B}
 	EndGlobalSection
 EndGlobal
