@@ -2,11 +2,18 @@ namespace EasyExample.States;
 
 public class Off : State
 {
-    public void Handle(LightSwitch lightSwitch)
+    private readonly LightSwitch _lightSwitch;
+
+    public Off(LightSwitch lightSwitch)
     {
-        lightSwitch.ChangeState(new On());
+        _lightSwitch = lightSwitch;
     }
 
+    public void Press()
+    {
+        _lightSwitch.ChangeState(new On(_lightSwitch));
+    }
+    
     public string Description()
     {
         return "The light is OFF";

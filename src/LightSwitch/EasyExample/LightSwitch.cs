@@ -8,9 +8,9 @@ public class LightSwitch
 
     public LightSwitch()
     {
-        state = new Off();
+        state = new Off(this);
     }
-
+    
     public void ChangeState(State state)
     {
         this.state = state;
@@ -18,7 +18,12 @@ public class LightSwitch
 
     public void Press()
     {
-        state.Handle(this);
-        Console.WriteLine(state.Description());
+        this.state.Press();
+        Console.WriteLine(Description());
+    }
+
+    private string Description()
+    {
+        return this.state.Description();
     }
 }
