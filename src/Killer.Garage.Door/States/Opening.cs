@@ -26,12 +26,12 @@ public class Opening : State
             if (isObstacleDetected)
             {
                 garageDoor.ChangeState(new Closing());
-                garageDoor.lastDirection = new Closing();
+                garageDoor.direction = new Closing();
             }
             else
             {
                 garageDoor.ChangeState(new Opening());
-                garageDoor.lastDirection = new Opening();
+                garageDoor.direction = new Opening();
             }
         }
     }
@@ -43,7 +43,7 @@ public class Opening : State
     
     public char ProcessEvent(char @event)
     {
-        _garageDoor.lastDirection = new Opening(_garageDoor);
+        _garageDoor.direction = new Opening(_garageDoor);
         var isButtonPressed = @event == 'P';
         if (isButtonPressed || _garageDoor.position == FullyOpened)
         {
@@ -55,12 +55,12 @@ public class Opening : State
         if (isObstacleDetected)
         {
             _garageDoor.ChangeState(new Closing(_garageDoor));
-            _garageDoor.lastDirection = new Closing(_garageDoor);
+            _garageDoor.direction = new Closing(_garageDoor);
             return (_garageDoor.position -= 1).ToString()[0]; // TODO: Me chirria que opening conozca el comportamiento de Closing
         }
 
         _garageDoor.ChangeState(new Opening(_garageDoor));
-        _garageDoor.lastDirection = new Opening(_garageDoor);
+        _garageDoor.direction = new Opening(_garageDoor);
         return (_garageDoor.position += 1).ToString()[0];
     }
 }

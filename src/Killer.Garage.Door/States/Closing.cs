@@ -24,12 +24,12 @@ public class Closing : State
         else if (isObstacleDetected)
         {
             garageDoor.ChangeState(new Opening());
-            garageDoor.lastDirection = new Opening();
+            garageDoor.direction = new Opening();
         }
         else
         {
             garageDoor.ChangeState(new Closing());
-            garageDoor.lastDirection = new Closing();
+            garageDoor.direction = new Closing();
         }
     }
 
@@ -40,24 +40,36 @@ public class Closing : State
     
     public char ProcessEvent(char @event)
     {
-        _garageDoor.lastDirection = new Closing(_garageDoor);
+        _garageDoor.direction = new Closing(_garageDoor);
         var isButtonPressed = @event == 'P';
         if (isButtonPressed || _garageDoor.position == FullyClosed)
         {
-            _garageDoor.ChangeState(new Pause(_garageDoor));
-            return _garageDoor.position.ToString()[0];
+            return PauseCommand();
         }
-
         var isObstacleDetected = @event == 'O';
-        if (isObstacleDetected)
-        {
-            _garageDoor.ChangeState(new Opening(_garageDoor));
-            _garageDoor.lastDirection = new Opening(_garageDoor);
-            return (_garageDoor.position += 1).ToString()[0];
-        }
+        return isObstacleDetected 
+            ? OpeningCommand() 
+            : ClosingCommand();
+    }
 
+    private char PauseCommand()
+    {
+        _garageDoor.ChangeState(new Pause(_garageDoor));
+        return _garageDoor.position.ToString()[0];
+    }
+
+    private char OpeningCommand()
+    {
+        _garageDoor.ChangeState(new Opening(_garageDoor));
+        _garageDoor.direction = new Opening(_garageDoor);
+        return (_garageDoor.position += 1).ToString()[0];
+    }
+    
+    private char ClosingCommand()
+    {
         _garageDoor.ChangeState(new Closing(_garageDoor));
-        _garageDoor.lastDirection = new Closing(_garageDoor);
+        _garageDoor.direction = new Closing(_garageDoor);
         return (_garageDoor.position -= 1).ToString()[0];
     }
+
 }

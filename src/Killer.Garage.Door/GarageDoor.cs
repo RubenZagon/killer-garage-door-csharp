@@ -6,11 +6,11 @@ public class GarageDoor
 {
     private State state;
     public int position;
-    public State lastDirection;
+    public State direction;
 
     public GarageDoor()
     {
-        lastDirection = new Pause(this);
+        direction = new Pause(this);
         position = Constants.FullyClosed;
         state = new Pause(this);
     }
