@@ -47,6 +47,16 @@ public class Closing : State
             return _garageDoor.position.ToString()[0];
         }
 
+        var isObstacleDetected = @event == 'O';
+        if (isObstacleDetected)
+        {
+            _garageDoor.ChangeState(new Opening(_garageDoor));
+            _garageDoor.lastDirection = new Opening(_garageDoor);
+            return (_garageDoor.position += 1).ToString()[0];
+        }
+
+        _garageDoor.ChangeState(new Closing(_garageDoor));
+        _garageDoor.lastDirection = new Closing(_garageDoor);
         return (_garageDoor.position -= 1).ToString()[0];
     }
 }

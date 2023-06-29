@@ -56,7 +56,7 @@ public class Opening : State
         {
             _garageDoor.ChangeState(new Closing(_garageDoor));
             _garageDoor.lastDirection = new Closing(_garageDoor);
-            return (_garageDoor.position -= 1).ToString()[0]; // Me chirria que opening conozca el comportamiento de Closing
+            return (_garageDoor.position -= 1).ToString()[0]; // TODO: Me chirria que opening conozca el comportamiento de Closing
         }
 
         _garageDoor.ChangeState(new Opening(_garageDoor));
