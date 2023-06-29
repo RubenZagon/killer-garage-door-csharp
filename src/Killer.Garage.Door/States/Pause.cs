@@ -45,9 +45,10 @@ public class Pause : State
         return position;
     }
     
-    public char ProcessEvent(char @event)
+    public char ProcessEvent(char @event) // En este enfoque me chirria que tenga que conocer tanto el método Process Event...
     {
         var isButtonPressed = @event == 'P';
+        
         if (isButtonPressed && _garageDoor.position == FullyClosed)
         {
             _garageDoor.ChangeState(new Opening(_garageDoor));
@@ -58,7 +59,19 @@ public class Pause : State
             _garageDoor.ChangeState(new Closing(_garageDoor));
             _garageDoor.position = FullyOpened - 1;
         }
-        
+        else if (isButtonPressed && _garageDoor.position is > FullyClosed and < FullyOpened)
+        {
+            if (_garageDoor.lastDirection is Opening)
+            {
+                _garageDoor.ChangeState(new Opening(_garageDoor));
+                _garageDoor.position += 1;
+            }
+            if (_garageDoor.lastDirection is Closing)
+            {
+                _garageDoor.ChangeState(new Closing(_garageDoor));
+                _garageDoor.position -= 1;
+            }
+        }
         
         return _garageDoor.position.ToString()[0];
     }

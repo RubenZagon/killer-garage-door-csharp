@@ -43,6 +43,7 @@ public class Opening : State
     
     public char ProcessEvent(char @event)
     {
+        _garageDoor.lastDirection = new Opening(_garageDoor);
         var isButtonPressed = @event == 'P';
         if (isButtonPressed || _garageDoor.position == FullyOpened)
         {
