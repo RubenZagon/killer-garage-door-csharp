@@ -11,43 +11,9 @@ public class Pause : State
         _garageDoor = garageDoor;
     }
     
-    public Pause() { }
-
-    public void Handle(GarageDoor garageDoor, char @event)
-    {
-        var isButtonPressed = @event == 'P';
-        switch (isButtonPressed)
-        {
-            case true when garageDoor.position == FullyClosed:
-                garageDoor.ChangeState(new Opening());
-                break;
-            case true when garageDoor.position == FullyOpened:
-                garageDoor.ChangeState(new Closing());
-                break;
-            case true when garageDoor.position is > FullyClosed and < FullyOpened:
-                if (garageDoor.direction is Opening)
-                {
-                    garageDoor.ChangeState(new Opening());
-                }
-                else
-                {
-                    garageDoor.ChangeState(new Closing());
-                }
-                break;
-            default:
-                garageDoor.ChangeState(new Pause());
-                break;
-        }
-    }
-
-    public int ProcessEvent(int position, char @event)
-    {
-        return position;
-    }
-    
     public char ProcessEvent(char @event) // En este enfoque me chirria que tenga que conocer tanto el método Process Event...
     {
-        var isButtonPressed = @event == 'P';
+        var isButtonPressed = @event == 'P'; // TODO: Se debería extraer a un método privado ya que se comparte en 3 sitios diferentes ? o State debería ser una clase abstracta ?
         return isButtonPressed switch
         {
             true when _garageDoor.position == FullyClosed => OpeningCommand(),
