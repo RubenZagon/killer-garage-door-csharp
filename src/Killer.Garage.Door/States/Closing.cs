@@ -41,7 +41,8 @@ public class Closing : State
     public char ProcessEvent(char @event)
     {
         _garageDoor.lastDirection = new Closing(_garageDoor);
-        if (_garageDoor.position == FullyClosed)
+        var isButtonPressed = @event == 'P';
+        if (isButtonPressed || _garageDoor.position == FullyClosed)
         {
             _garageDoor.ChangeState(new Pause(_garageDoor));
             return _garageDoor.position.ToString()[0];
