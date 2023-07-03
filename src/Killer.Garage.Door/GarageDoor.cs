@@ -22,6 +22,8 @@ public class GarageDoor
 
     public string ProcessEvents(string events)
     {
+
+        return ProcessEvents(events, true);
         // Patrón Estado
         return new string(
             events.ToCharArray()
@@ -34,4 +36,21 @@ public class GarageDoor
                 .ToArray()
         );
     }
+    
+    public string ProcessEvents(string events, bool new_way)
+    {
+        // Patrón Estado
+        return state.ProcessEvent(events);
+        return new string(
+            events.ToCharArray()
+                .Select(@event =>
+                {
+                    state.Handle(this, @event);
+                    position = state.ProcessEvent(position);
+                    return position.ToString()[0];
+                })
+                .ToArray()
+        );
+    }
+
 }

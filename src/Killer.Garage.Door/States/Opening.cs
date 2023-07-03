@@ -26,7 +26,12 @@ public class Opening : State
             }
         }
     }
-    
+
+    public string ProcessEvent(string events)
+    {
+        throw new NotImplementedException();
+    }
+
     public int ProcessEvent(int position)
     {
         return position + 1;

@@ -31,6 +31,16 @@ public class Pause : State
         }
     }
 
+    public string ProcessEvent(string events)
+    {
+        if (events.Length == 1)
+        {
+            return "0";
+        }
+        string restEventsToProcess = events.Substring(1);
+        return "0" + this.ProcessEvent(restEventsToProcess);
+    }
+
     public int ProcessEvent(int position)
     {
         return position;
