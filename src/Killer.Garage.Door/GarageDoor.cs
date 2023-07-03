@@ -10,9 +10,9 @@ public class GarageDoor
 
     public GarageDoor()
     {
-        lastDirection = new Pause();
+        lastDirection = new Pause(this);
         position = Constants.FullyClosed;
-        state = new Pause();
+        state = new Pause(this);
     }
 
     public void ChangeState(State state)

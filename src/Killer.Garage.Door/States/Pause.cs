@@ -4,6 +4,17 @@ namespace Killer.Garage.Door.States;
 
 public class Pause : State
 {
+    private readonly GarageDoor _garageDoor;
+
+    public Pause(GarageDoor _garageDoor)
+    {
+        this._garageDoor = _garageDoor;
+    }
+
+    public Pause()
+    {
+    }
+
     public void Handle(GarageDoor garageDoor, char @event)
     {
         var isButtonPressed = @event == 'P';
@@ -33,12 +44,19 @@ public class Pause : State
 
     public string ProcessEvent(string events)
     {
+        var isButtonPressed = events[0] == 'P';
+        if (isButtonPressed)
+        {
+            _garageDoor.ChangeState(new Opening(_garageDoor));
+            return _garageDoor.ProcessEvents(events);
+        }
+        
         if (events.Length == 1)
         {
-            return "0";
+            return _garageDoor.position.ToString();
         }
         string restEventsToProcess = events.Substring(1);
-        return "0" + this.ProcessEvent(restEventsToProcess);
+        return _garageDoor.position + ProcessEvent(restEventsToProcess);
     }
 
     public int ProcessEvent(int position)
