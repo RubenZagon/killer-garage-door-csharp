@@ -40,9 +40,16 @@ public class Opening : State
 
     public string ProcessEvent(string events)
     {
+        var isButtonPressed = events[0] == 'P';
         if (events.Length == 1)
         {
             return (_garageDoor.position += 1).ToString();
+        }
+
+        if (_garageDoor.position is < FullyOpened and > FullyClosed && isButtonPressed)
+        {
+            _garageDoor.ChangeState(new Pause(_garageDoor));
+            return _garageDoor.ProcessEvents(events);
         }
 
         if (_garageDoor.position == FullyOpened)
