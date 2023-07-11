@@ -41,16 +41,6 @@ public class GarageDoor
     {
         // Patrón Estado
         return state.ProcessEvent(events);
-        return new string(
-            events.ToCharArray()
-                .Select(@event =>
-                {
-                    state.Handle(this, @event);
-                    position = state.ProcessEvent(position);
-                    return position.ToString()[0];
-                })
-                .ToArray()
-        );
     }
 
 }

@@ -45,9 +45,14 @@ public class Pause : State
     public string ProcessEvent(string events)
     {
         var isButtonPressed = events[0] == 'P';
-        if (isButtonPressed)
+        if (isButtonPressed && _garageDoor.position == FullyClosed)
         {
             _garageDoor.ChangeState(new Opening(_garageDoor));
+            return _garageDoor.ProcessEvents(events);
+        }
+        if (isButtonPressed && _garageDoor.position == FullyOpened)
+        {
+            _garageDoor.ChangeState(new Closing(_garageDoor));
             return _garageDoor.ProcessEvents(events);
         }
         
@@ -55,8 +60,8 @@ public class Pause : State
         {
             return _garageDoor.position.ToString();
         }
-        string restEventsToProcess = events.Substring(1);
-        return _garageDoor.position + ProcessEvent(restEventsToProcess);
+
+        return _garageDoor.position + ProcessEvent(events[1..]);
     }
 
     public int ProcessEvent(int position)

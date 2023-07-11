@@ -4,6 +4,17 @@ namespace Killer.Garage.Door.States;
 
 public class Closing : State
 {
+    private readonly GarageDoor _garageDoor;
+
+    public Closing(GarageDoor _garageDoor)
+    {
+        this._garageDoor = _garageDoor;
+    }
+
+    public Closing()
+    {
+    }
+
     public void Handle(GarageDoor garageDoor, char @event)
     {
         var isButtonPressed = @event == 'P';
@@ -26,7 +37,18 @@ public class Closing : State
 
     public string ProcessEvent(string events)
     {
-        throw new NotImplementedException();
+        if (events.Length == 1)
+        {
+            return (_garageDoor.position -= 1).ToString();
+        }
+        
+        if (_garageDoor.position == FullyClosed)
+        {
+            _garageDoor.ChangeState(new Pause(_garageDoor));
+            return _garageDoor.ProcessEvents(events);
+        }
+
+        return (_garageDoor.position -= 1) + ProcessEvent(events[1..]);
     }
 
     public int ProcessEvent(int position)
