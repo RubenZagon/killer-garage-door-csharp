@@ -9,36 +9,8 @@ public class Opening : State
     public Opening(GarageDoor _garageDoor)
     {
         this._garageDoor = _garageDoor;
-        this._garageDoor.direction = Direction.TO_OPEN;
     }
-
-    public Opening()
-    {
-    }
-
-    public void Handle(GarageDoor garageDoor, char @event)
-    {
-        var isButtonPressed = @event == 'P';
-        if (isButtonPressed || garageDoor.position == FullyOpened)
-        {
-            garageDoor.ChangeState(new Pause());
-        }
-        else
-        {
-            var isObstacleDetected = @event == 'O';
-            if (isObstacleDetected)
-            {
-                garageDoor.ChangeState(new Closing());
-                garageDoor.lastDirection = new Closing();
-            }
-            else
-            {
-                garageDoor.ChangeState(new Opening());
-                garageDoor.lastDirection = new Opening();
-            }
-        }
-    }
-
+    
     public string ProcessEvent(string events)
     {
         if (events.Length == 1)
@@ -60,10 +32,5 @@ public class Opening : State
         }*/
 
         return (_garageDoor.position += 1) + ProcessEvent(events[1..]);
-    }
-
-    public int ProcessEvent(int position)
-    {
-        return position + 1;
     }
 }

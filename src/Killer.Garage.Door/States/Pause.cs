@@ -10,38 +10,7 @@ public class Pause : State
     {
         this._garageDoor = _garageDoor;
     }
-
-    public Pause()
-    {
-    }
-
-    public void Handle(GarageDoor garageDoor, char @event)
-    {
-        var isButtonPressed = @event == 'P';
-        switch (isButtonPressed)
-        {
-            case true when garageDoor.position == FullyClosed:
-                garageDoor.ChangeState(new Opening());
-                break;
-            case true when garageDoor.position == FullyOpened:
-                garageDoor.ChangeState(new Closing());
-                break;
-            case true when garageDoor.position is > FullyClosed and < FullyOpened:
-                if (garageDoor.lastDirection is Opening)
-                {
-                    garageDoor.ChangeState(new Opening());
-                }
-                else
-                {
-                    garageDoor.ChangeState(new Closing());
-                }
-                break;
-            default:
-                garageDoor.ChangeState(new Pause());
-                break;
-        }
-    }
-
+    
     public string ProcessEvent(string events)
     {
         var isButtonPressed = events[0] == 'P';
@@ -56,8 +25,7 @@ public class Pause : State
             return _garageDoor.ProcessEvents(events);
         }
 
-        if (isButtonPressed && _garageDoor.position < FullyOpened &&
-            this._garageDoor.direction == Direction.TO_OPEN)
+        if (isButtonPressed && _garageDoor.position < FullyOpened)
         {
             _garageDoor.ChangeState(new Opening(_garageDoor));
             return _garageDoor.ProcessEvents(events[1..]);
@@ -69,10 +37,5 @@ public class Pause : State
         }
 
         return _garageDoor.position + ProcessEvent(events[1..]);
-    }
-
-    public int ProcessEvent(int position)
-    {
-        return position;
     }
 }
