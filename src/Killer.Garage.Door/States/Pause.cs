@@ -55,7 +55,14 @@ public class Pause : State
             _garageDoor.ChangeState(new Closing(_garageDoor));
             return _garageDoor.ProcessEvents(events);
         }
-        
+
+        if (isButtonPressed && _garageDoor.position < FullyOpened &&
+            this._garageDoor.direction == Direction.TO_OPEN)
+        {
+            _garageDoor.ChangeState(new Opening(_garageDoor));
+            return _garageDoor.ProcessEvents(events[1..]);
+        }
+
         if (events.Length == 1)
         {
             return _garageDoor.position.ToString();

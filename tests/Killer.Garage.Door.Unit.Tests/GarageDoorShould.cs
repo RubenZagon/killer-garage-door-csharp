@@ -17,6 +17,7 @@ public class GarageDoorShould : IDisposable
     [Fact]
     public void No_press_the_button()
     {
+        sut = new GarageDoor(true);
         var actual = sut.ProcessEvents(".....");
 
         actual.Should().Be("00000");
@@ -25,6 +26,7 @@ public class GarageDoorShould : IDisposable
     [Fact]
     public void Press_the_button_for_2_sec()
     {
+        sut = new GarageDoor(true);
         var actual = sut.ProcessEvents("..P.");
 
         actual.Should().Be("0012");

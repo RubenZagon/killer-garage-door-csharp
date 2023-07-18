@@ -9,6 +9,7 @@ public class Closing : State
     public Closing(GarageDoor _garageDoor)
     {
         this._garageDoor = _garageDoor;
+        this._garageDoor.direction = Direction.TO_CLOSE;
     }
 
     public Closing()

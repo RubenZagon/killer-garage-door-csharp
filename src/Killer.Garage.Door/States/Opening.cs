@@ -9,6 +9,7 @@ public class Opening : State
     public Opening(GarageDoor _garageDoor)
     {
         this._garageDoor = _garageDoor;
+        this._garageDoor.direction = Direction.TO_OPEN;
     }
 
     public Opening()
@@ -40,11 +41,11 @@ public class Opening : State
 
     public string ProcessEvent(string events)
     {
-        var isButtonPressed = events[0] == 'P';
         if (events.Length == 1)
         {
             return (_garageDoor.position += 1).ToString();
         }
+        /*var isButtonPressed = events[0] == 'P';
 
         if (_garageDoor.position is < FullyOpened and > FullyClosed && isButtonPressed)
         {
@@ -56,7 +57,7 @@ public class Opening : State
         {
             _garageDoor.ChangeState(new Pause(_garageDoor));
             return _garageDoor.ProcessEvents(events);
-        }
+        }*/
 
         return (_garageDoor.position += 1) + ProcessEvent(events[1..]);
     }
