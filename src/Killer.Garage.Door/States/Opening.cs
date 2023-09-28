@@ -17,19 +17,20 @@ public class Opening : State
         {
             return (_garageDoor.position += 1).ToString();
         }
-        /*var isButtonPressed = events[0] == 'P';
+        var isButtonPressed = events[0] == 'P';
 
         if (_garageDoor.position is < FullyOpened and > FullyClosed && isButtonPressed)
         {
             _garageDoor.ChangeState(new Pause(_garageDoor));
             return _garageDoor.ProcessEvents(events);
         }
+        
 
         if (_garageDoor.position == FullyOpened)
         {
-            _garageDoor.ChangeState(new Pause(_garageDoor));
+            _garageDoor.ChangeState(new Opened(_garageDoor));
             return _garageDoor.ProcessEvents(events);
-        }*/
+        }
 
         return (_garageDoor.position += 1) + ProcessEvent(events[1..]);
     }

@@ -1,17 +1,16 @@
 ﻿namespace Killer.Garage.Door.States;
 
-public class Closed: State
+public class Opened :State
 {
     private GarageDoor _garageDoor;
 
-    public Closed(GarageDoor garageDoor)
+    public Opened(GarageDoor garageDoor)
     {
         _garageDoor = garageDoor;
     }
-
     public string ProcessEvent(string events)
     {
-        var processed = "0";
+        var processed = "5";
         if (events.Length == 1)
         {
             return processed;
@@ -19,7 +18,7 @@ public class Closed: State
 
         if (events[0] == 'P')
         {
-            _garageDoor.ChangeState(new Opening(_garageDoor));
+            _garageDoor.ChangeState(new Closing(_garageDoor));
             return _garageDoor.ProcessEvents(events);
         }
 
